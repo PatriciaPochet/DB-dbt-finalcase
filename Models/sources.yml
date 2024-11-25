@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: localbike_dataset
+    tables:
+      - name: brand
+      - name: category
+      - name: customer
+      - name: order
+      - name: order_item
+      - name: product
+      - name: staff
+      - name: stock
+      - name: store
