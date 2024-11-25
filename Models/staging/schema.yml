@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: stg_localbike_dataset__brand
+    columns:
+      - name: brand_id
+        description: "brand table's primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_localbike_dataset__category
+    columns:
+      - name: category_id
+        description: "category table's primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_localbike_dataset__customer
+    columns:
+      - name: customer_id
+        description: "customer table's primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_localbike_dataset__order
+    columns:
+      - name: order_id
+        description: "order table's primary key"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__customer')
+              field: customer_id
+      - name: store_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__store')
+              field: store_id
+      - name: staff_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__staff')
+              field: staff_id
+
+  - name: stg_localbike_dataset__order_item
+    columns:
+      - name: order_item_id
+        description: "order_item table's primary key - concatenation of order_id and item_id"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__order')
+              field: order_id
+      - name: product_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__product')
+              field: product_id
+
+  - name: stg_localbike_dataset__product
+    columns:
+      - name: product_id
+        description: "product table's primary key"
+        tests:
+          - unique
+          - not_null
+      - name: category_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__category')
+              field: category_id
+      - name: brand_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__brand')
+              field: brand_id
+
+  - name: stg_localbike_dataset__staff
+    columns:
+      - name: staff_id
+        description: "staff table's primary key"
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        tests:
+          - relationships:
+              to: ref('stg_localbike_dataset__store')
+              field: store_id
+
+  - name: stg_localbike_dataset__stock
+    columns:
+      - name: stock_id
+        description: "stock table's primary key - concatenation of store_id and product_id"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_localbike_dataset__store
+    columns:
+      - name: store_id
+        description: "store table's primary key"
+        tests:
+          - unique
+          - not_null
