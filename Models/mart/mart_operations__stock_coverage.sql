@@ -6,12 +6,12 @@ SELECT
     store.store_name,
     pdt.product_name,
     cat.category_name
-FROM { ref('int_localbike_dataset__2018_avg_ordered_quantity' )}} AS ag
-LEFT JOIN {{ ref('stg_localbike_dataset__stock')} AS stock
+FROM {{ ref('int_localbike_dataset__2018_avg_ordered_quantity' )}} AS ag
+LEFT JOIN {{ ref('stg_localbike_dataset__stock')}} AS stock
  ON ag.store_id = stock.store_id AND ag.product_id = stock.store_id
-LEFT JOIN {{ ref('stg_localbike_dataset__store')} AS store
+LEFT JOIN {{ ref('stg_localbike_dataset__store')}} AS store
  ON ag.store_id = store.store_id
-LEFT JOIN {{ ref('stg_localbike_dataset__product')} AS pdt
+LEFT JOIN {{ ref('stg_localbike_dataset__product')}} AS pdt
  ON ag.product_id = pdt.product_id
-LEFT JOIN {{ ref('stg_localbike_dataset__category')} AS cat
+LEFT JOIN {{ ref('stg_localbike_dataset__category')}} AS cat
  ON pdt.category_id = cat.category_id
