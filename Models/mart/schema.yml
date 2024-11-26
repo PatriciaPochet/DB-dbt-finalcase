@@ -1,0 +1,31 @@
+version: 2
+
+models:
+
+  - name: mart_operations__stock_coverage
+    description: |
+      This model provides all key metrics needed to follow the stock coverage 
+      and avoid inventory shortage or help preventing/evaluating toxic stock 
+      (stock that we won't be able to sale).
+      It contains by store and by product the 2018 average demand (ultimate year),
+      the quantity in stock and product information like the price to evaluate the stock.
+    columns:
+
+      - name: stock_id
+        tests:
+          - unique
+          - not_null
+
+      - name: avg_ordered_quantity_by_day  
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+              
+      - name: stock_quantity  
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: '>= 0'
+
+      - name: product_price  
+        tests:
+          - not_null
