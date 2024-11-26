@@ -5,6 +5,8 @@ SELECT
     COALESCE(stock.quantity, 0) AS stock_quantity,
     store.store_name,
     pdt.product_name,
+    pdt.model_year,
+    pdt.list_price AS product_price,
     cat.category_name
 FROM {{ ref('int_localbike_dataset__2018_avg_ordered_quantity' )}} AS ag
 LEFT JOIN {{ ref('stg_localbike_dataset__stock')}} AS stock
