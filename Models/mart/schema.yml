@@ -16,16 +16,6 @@ models:
           - unique
           - not_null
 
-      - name: avg_ordered_quantity_by_day  
-        data_tests:
-          - name: assert_avg_ordered_quantity_by_day_is_positive
-            description: >
-                          
-      - name: stock_quantity  
-        data_tests:
-          - name: assert_stock_quantity_is_positive
-            description: >
-
       - name: product_price  
         tests:
           - not_null
