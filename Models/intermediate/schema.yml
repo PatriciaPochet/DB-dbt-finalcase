@@ -1,0 +1,15 @@
+version: 2
+
+models:
+
+  - name: int_localbike_dataset__2018_avg_ordered_quantity
+    columns:
+      - name: stock_id
+        description: "Primary key of the table 2018_avg_ordered_quantity - concatenation of storeèid and product_id like in stock table"
+        tests:
+          - unique
+          - not_null
+
+
+
+
